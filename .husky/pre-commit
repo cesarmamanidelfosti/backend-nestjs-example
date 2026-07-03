@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+echo "▶ [pre-commit] Validando nombre de rama..."
+node scripts/validate-branch-name.js || exit 1
+
+echo "▶ [pre-commit] Ejecutando lint-staged..."
+npx lint-staged || exit 1
+
+echo "▶ [pre-commit] Ejecutando tests unitarios con cobertura..."
+npm run test:cov || exit 1
+
+echo "▶ [pre-commit] Validando code coverage (umbral configurable)..."
+npm run check:coverage || exit 1
+
+echo "✅ [pre-commit] Todas las validaciones locales pasaron."

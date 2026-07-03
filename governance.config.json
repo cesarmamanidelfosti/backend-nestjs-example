@@ -1,0 +1,34 @@
+{
+  "project": {
+    "code": "DEMO"
+  },
+  "branching": {
+    "protectedBranches": ["main", "qa", "dev"],
+    "types": {
+      "feature": { "pattern": "^feature/DEMO-\\d+-[a-z0-9]+(-[a-z0-9]+)*$" },
+      "bugfix": { "pattern": "^bugfix/DEMO-\\d+-[a-z0-9]+(-[a-z0-9]+)*$" },
+      "hotfix": { "pattern": "^hotfix/DEMO-\\d+-[a-z0-9]+(-[a-z0-9]+)*$" },
+      "release": { "pattern": "^release/\\d+\\.\\d+\\.0$" }
+    }
+  },
+  "commitMessage": {
+    "prefixPattern": "^\\[[A-Z][A-Z0-9]*-\\d+\\]\\s.+",
+    "maxSubjectLength": 72,
+    "minSubjectLength": 15,
+    "maxBodyLineLength": 100,
+    "maxTotalLines": 30
+  },
+  "coverage": {
+    "thresholdPercent": 80
+  },
+  "sonar": {
+    "hostUrl": "http://localhost:9000",
+    "projectKey": "demo-backend",
+    "runOnHook": "pre-push",
+    "qualityGateWait": true,
+    "qualityGateTimeoutSec": 300
+  },
+  "changelog": {
+    "enforceOnPaths": ["src/"]
+  }
+}

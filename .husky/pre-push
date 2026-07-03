@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+echo "▶ [pre-push] Verificando disponibilidad de SonarQube local..."
+curl -sf http://localhost:9000/api/system/status > /dev/null || {
+  echo "❌ SonarQube no responde en http://localhost:9000. Levantalo con: docker compose up -d"
+  exit 1
+}
+
+echo "▶ [pre-push] Ejecutando análisis de SonarQube (Quality Gate bloqueante)..."
+npm run sonar:scan || exit 1
+
+echo "▶ [pre-push] Auditoría de dependencias (OWASP A06)..."
+npm run audit:deps || exit 1
+
+echo "✅ [pre-push] Quality Gate aprobado. Push permitido."
