@@ -46,3 +46,5 @@ GET /health
 ## Husky / gobernanza local
 
 Ver `governance.config.json`, `scripts/validate-branch-name.js`, `scripts/validate-commit-msg.js`, `scripts/check-coverage-summary.js`, `scripts/run-sonar-scan.js` y `.husky/*`, implementados según `implementacion-husky-precommit-nestjs-angular.md`. El `docker-compose.yml` de SonarQube vive en `../` (compartido con `frontend-angular-example`) y no se levanta automáticamente — ver la sección de validación manual en el resumen de la sesión que generó este proyecto.
+
+# Notas de prueba de Husky
