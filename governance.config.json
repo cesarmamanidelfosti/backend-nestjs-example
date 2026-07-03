@@ -23,12 +23,13 @@
   },
   "sonar": {
     "hostUrl": "http://localhost:9000",
-    "projectKey": "demo-backend",
+    "projectKey": "proj-backend",
     "runOnHook": "pre-push",
     "qualityGateWait": true,
     "qualityGateTimeoutSec": 300
   },
   "changelog": {
-    "enforceOnPaths": ["src/"]
+    "enforceOnPaths": ["src/"],
+    "blocking": false
   }
 }

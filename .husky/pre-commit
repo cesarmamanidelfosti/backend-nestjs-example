@@ -3,6 +3,9 @@
 echo "▶ [pre-commit] Validando nombre de rama..."
 node scripts/validate-branch-name.js || exit 1
 
+echo "▶ [pre-commit] Validando actualizacion de CHANGELOG.md..."
+node scripts/validate-changelog.js || exit 1
+
 echo "▶ [pre-commit] Ejecutando lint-staged..."
 npx lint-staged || exit 1
 

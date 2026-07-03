@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "check:coverage": "node scripts/check-coverage-summary.js",
     "check:branch": "node scripts/validate-branch-name.js",
+    "check:changelog": "node scripts/validate-changelog.js",
     "sonar:scan": "node scripts/run-sonar-scan.js",
     "audit:deps": "npm audit --omit=dev --audit-level=high",
     "prepare": "husky",
