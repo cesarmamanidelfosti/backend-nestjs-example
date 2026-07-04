@@ -52,3 +52,5 @@ Ver `governance.config.json`, `scripts/validate-branch-name.js`, `scripts/valida
 ## Flujo de ramas de ejemplo
 
 Ver `FLUJO-RAMAS-DEMO.md` para una demostración ejecutada de punta a punta del flujo de ramas del lineamiento (`dev`/`qa`/`main`, feature, bugfix con cherry-pick, release y hotfix) contra este mismo repositorio.
+
+Ver `FLUJO-RAMAS-DEMO-2.md` para el caso de genericización del dominio de ejemplo (`save-mortality` → `app-item`), ejecutado también con el mismo flujo de ramas.
