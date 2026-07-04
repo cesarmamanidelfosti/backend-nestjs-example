@@ -21,7 +21,11 @@ describe('SaveMortalityController (integration)', () => {
 
     app = moduleRef.createNestApplication();
     app.useGlobalPipes(
-      new ValidationPipe({ whitelist: true, transform: true }),
+      new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
     );
     await app.init();
 
@@ -59,5 +63,19 @@ describe('SaveMortalityController (integration)', () => {
     const body = response.body as SaveMortalityResponseBody;
     expect(body.success).toBe(true);
     expect(body.data.campaignId).toBe('campaign-001');
+  });
+
+  it('rejects requests with unexpected fields', async () => {
+    const token = await jwtService.signAsync({ sub: 'user-1' });
+
+    await request(app.getHttpServer())
+      .post('/v1/save-mortality')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        campaignId: 'campaign-001',
+        quantity: 4,
+        unexpectedField: 'nope',
+      })
+      .expect(400);
   });
 });
