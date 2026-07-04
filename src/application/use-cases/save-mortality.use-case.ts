@@ -36,6 +36,7 @@ export class SaveMortalityUseCase {
       quantity: dto.quantity,
       cause: dto.cause,
       photoUrl: dto.photoUrl,
+      notes: dto.notes,
       registeredBy,
       registeredAt: new Date().toISOString(),
     };
