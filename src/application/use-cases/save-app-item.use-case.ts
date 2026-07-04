@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { CreateAppItemDto } from '../dtos/create-app-item.dto';
 import { ParentNotFoundError } from '../../domain/errors';
 import { AppItem } from '../../domain/entities/app-item.entity';
