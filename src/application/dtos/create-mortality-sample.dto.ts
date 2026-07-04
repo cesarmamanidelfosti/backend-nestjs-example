@@ -4,6 +4,7 @@ import {
   IsOptional,
   IsPositive,
   IsString,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateMortalitySampleDto {
@@ -22,4 +23,9 @@ export class CreateMortalitySampleDto {
   @IsString()
   @IsOptional()
   photoUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  @MaxLength(280)
+  notes?: string;
 }

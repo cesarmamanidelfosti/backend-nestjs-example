@@ -71,4 +71,17 @@ describe('SaveMortalityUseCase', () => {
 
     expect(result.photoUrl).toBe('https://example.com/photo.jpg');
   });
+
+  it('persists a sample with notes', async () => {
+    campaignLookup.existsById.mockResolvedValue(true);
+    const dto: CreateMortalitySampleDto = {
+      campaignId: 'campaign-001',
+      quantity: 3,
+      notes: 'Revisar ventilacion del galpon 2',
+    };
+
+    const result = await useCase.execute({ dto, registeredBy: 'user-3' });
+
+    expect(result.notes).toBe('Revisar ventilacion del galpon 2');
+  });
 });

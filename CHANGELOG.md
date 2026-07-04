@@ -8,6 +8,7 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo, sig
 
 - [DEMO-1] Scaffolding inicial del backend NestJS con arquitectura hexagonal (`domain`/`application`/`infrastructure`/`shared`) y módulo `save-mortality` (DTO, caso de uso, controller HTTP, handler lambda, adaptadores en memoria, guard JWT).
 - [DEMO-2] Configuración de Husky (`pre-commit`, `commit-msg`, `pre-push`) según `implementacion-husky-precommit-nestjs-angular.md`: validación de rama, mensaje de commit, CHANGELOG, cobertura de tests y Quality Gate de SonarQube.
+- [DEMO-6] Campo opcional `notes` en la muestra de mortalidad (DTO, entidad y caso de uso), máximo 280 caracteres.
 
 ### Security
 

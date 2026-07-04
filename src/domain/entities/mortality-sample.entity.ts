@@ -4,6 +4,7 @@ export interface MortalitySample {
   quantity: number;
   cause?: string;
   photoUrl?: string;
+  notes?: string;
   registeredBy: string;
   registeredAt: string;
 }
