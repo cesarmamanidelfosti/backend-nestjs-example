@@ -4,6 +4,12 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo, sig
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-07-04
+
+### Security
+
+- [DEMO-8] `ValidationPipe` global ahora rechaza campos no declarados en el DTO (`forbidNonWhitelisted: true`) en vez de solo descartarlos silenciosamente (`whitelist: true`). Hotfix aplicado directo sobre `main`.
+
 ## [1.1.0] - 2026-07-04
 
 ### Added
@@ -20,4 +26,5 @@ Todos los cambios relevantes de este proyecto se documentan en este archivo, sig
 
 - [DEMO-3] Se fuerza `multer@^2.2.0` vía `overrides` de npm: `@nestjs/platform-express@11.1.27` (última versión publicada al momento) todavía fija `multer@2.1.1`, dentro del rango vulnerable a DoS (GHSA-72gw-mp4g-v24j, GHSA-3p4h-7m6x-2hcm). Corrige el bloqueo real de `npm audit` en `pre-push`.
 
+[1.1.1]: https://github.com/cesarmamanidelfosti/backend-nestjs-example/releases/tag/v1.1.1
 [1.1.0]: https://github.com/cesarmamanidelfosti/backend-nestjs-example/releases/tag/v1.1.0
