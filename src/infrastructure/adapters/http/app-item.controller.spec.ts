@@ -3,20 +3,20 @@ import { Test } from '@nestjs/testing';
 import { JwtService } from '@nestjs/jwt';
 import request from 'supertest';
 import { App } from 'supertest/types';
-import { SaveMortalityModule } from '../../modules/save-mortality.module';
+import { AppItemModule } from '../../modules/app-item.module';
 
-interface SaveMortalityResponseBody {
+interface AppItemResponseBody {
   success: boolean;
-  data: { campaignId: string };
+  data: { parentId: string };
 }
 
-describe('SaveMortalityController (integration)', () => {
+describe('AppItemController (integration)', () => {
   let app: INestApplication<App>;
   let jwtService: JwtService;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [SaveMortalityModule],
+      imports: [AppItemModule],
     }).compile();
 
     app = moduleRef.createNestApplication();
@@ -38,41 +38,41 @@ describe('SaveMortalityController (integration)', () => {
 
   it('rejects requests without a bearer token', async () => {
     await request(app.getHttpServer())
-      .post('/v1/save-mortality')
-      .send({ campaignId: 'campaign-001', quantity: 1 })
+      .post('/v1/app-items')
+      .send({ parentId: 'parent-001', quantity: 1 })
       .expect(401);
   });
 
   it('rejects requests with an invalid token', async () => {
     await request(app.getHttpServer())
-      .post('/v1/save-mortality')
+      .post('/v1/app-items')
       .set('Authorization', 'Bearer invalid-token')
-      .send({ campaignId: 'campaign-001', quantity: 1 })
+      .send({ parentId: 'parent-001', quantity: 1 })
       .expect(401);
   });
 
-  it('creates a mortality sample for a valid token and payload', async () => {
+  it('creates an app item for a valid token and payload', async () => {
     const token = await jwtService.signAsync({ sub: 'user-1' });
 
     const response = await request(app.getHttpServer())
-      .post('/v1/save-mortality')
+      .post('/v1/app-items')
       .set('Authorization', `Bearer ${token}`)
-      .send({ campaignId: 'campaign-001', quantity: 4 })
+      .send({ parentId: 'parent-001', quantity: 4 })
       .expect(201);
 
-    const body = response.body as SaveMortalityResponseBody;
+    const body = response.body as AppItemResponseBody;
     expect(body.success).toBe(true);
-    expect(body.data.campaignId).toBe('campaign-001');
+    expect(body.data.parentId).toBe('parent-001');
   });
 
   it('rejects requests with unexpected fields', async () => {
     const token = await jwtService.signAsync({ sub: 'user-1' });
 
     const response = await request(app.getHttpServer())
-      .post('/v1/save-mortality')
+      .post('/v1/app-items')
       .set('Authorization', `Bearer ${token}`)
       .send({
-        campaignId: 'campaign-001',
+        parentId: 'parent-001',
         quantity: 4,
         unexpectedField: 'nope',
       })

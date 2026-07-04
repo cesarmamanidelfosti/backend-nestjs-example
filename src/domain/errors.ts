@@ -1,6 +1,6 @@
-export class CampaignNotFoundError extends Error {
-  constructor(campaignId: string) {
-    super(`Campaign ${campaignId} not found`);
-    this.name = 'CampaignNotFoundError';
+export class ParentNotFoundError extends Error {
+  constructor(parentId: string) {
+    super(`Parent ${parentId} not found`);
+    this.name = 'ParentNotFoundError';
   }
 }

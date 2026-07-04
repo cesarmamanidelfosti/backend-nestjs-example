@@ -8,10 +8,10 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class CreateMortalitySampleDto {
+export class CreateAppItemDto {
   @IsString()
   @IsNotEmpty()
-  campaignId: string;
+  parentId: string;
 
   @IsInt()
   @IsPositive()
@@ -19,11 +19,11 @@ export class CreateMortalitySampleDto {
 
   @IsString()
   @IsOptional()
-  cause?: string;
+  description?: string;
 
   @IsUrl()
   @IsOptional()
-  photoUrl?: string;
+  attachmentUrl?: string;
 
   @IsString()
   @IsOptional()
