@@ -5,12 +5,12 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import type { Response } from 'express';
-import { CampaignNotFoundError } from '../../domain/errors';
+import { ParentNotFoundError } from '../../domain/errors';
 import { buildEnvelope } from '../utils/response-helper';
 
-@Catch(CampaignNotFoundError)
+@Catch(ParentNotFoundError)
 export class DomainExceptionFilter implements ExceptionFilter {
-  catch(exception: CampaignNotFoundError, host: ArgumentsHost): void {
+  catch(exception: ParentNotFoundError, host: ArgumentsHost): void {
     const response = host.switchToHttp().getResponse<Response>();
     response
       .status(HttpStatus.NOT_FOUND)

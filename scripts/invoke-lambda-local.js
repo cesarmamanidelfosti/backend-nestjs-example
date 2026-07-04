@@ -6,15 +6,15 @@ const withDb = process.argv.includes('--with-db');
 // El nombre "--with-db" se conserva por paridad con el contrato de
 // implementacion-husky-precommit-nestjs-angular.md, aunque en este esqueleto
 // ambos modos usan los adaptadores en memoria (ver nota de desviacion en el README).
-const campaignId = withDb ? 'campaign-999' : 'campaign-001';
+const parentId = withDb ? 'parent-999' : 'parent-001';
 
 async function main() {
   const { handler } = require(
-    path.resolve(__dirname, '..', 'dist', 'infrastructure', 'adapters', 'lambda', 'save-mortality.handler'),
+    path.resolve(__dirname, '..', 'dist', 'infrastructure', 'adapters', 'lambda', 'app-item.handler'),
   );
 
   const event = {
-    body: JSON.stringify({ campaignId, quantity: 3, cause: 'calor' }),
+    body: JSON.stringify({ parentId, quantity: 3, description: 'ejemplo local' }),
     requestContext: {
       authorizer: { claims: { sub: 'local-tester' } },
     },
