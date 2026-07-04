@@ -68,7 +68,7 @@ describe('SaveMortalityController (integration)', () => {
   it('rejects requests with unexpected fields', async () => {
     const token = await jwtService.signAsync({ sub: 'user-1' });
 
-    await request(app.getHttpServer())
+    const response = await request(app.getHttpServer())
       .post('/v1/save-mortality')
       .set('Authorization', `Bearer ${token}`)
       .send({
@@ -77,5 +77,8 @@ describe('SaveMortalityController (integration)', () => {
         unexpectedField: 'nope',
       })
       .expect(400);
+
+    const body = response.body as { message: string[] };
+    expect(body.message.join(' ')).toContain('unexpectedField');
   });
 });
